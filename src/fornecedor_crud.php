@@ -5,7 +5,7 @@
 require_once "conecta.php";
 
 // Usada em fornecedores/listar.php
-function buscarFornecedores(PDO $conexao){
+function buscarFornecedores(PDO $conexao):array{
     // montando comando sql
     $sql = "SELECT * FROM fornecedores";
 
@@ -13,5 +13,8 @@ function buscarFornecedores(PDO $conexao){
     $consulta = $conexao->query($sql);
 
     return $consulta->fetchAll();
+}
 
+function inserirFornecedor(PDO $conexao, string $nome):void{
+    $sql = ""
 }
