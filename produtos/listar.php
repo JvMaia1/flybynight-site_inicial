@@ -1,3 +1,7 @@
+<?php
+    require_once "../src/produtos_crud.php";
+    $produtos = buscarProdutos($conexao);
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -22,13 +26,15 @@
             <table>
                 <caption>Relação de Produtos</caption>
                 <thead>
+                    <?php foreach($produtos as $produto): ?>
                     <tr>
-                        <th scope="col">Nome</th>
-                        <th scope="col">Preço</th>
-                        <th scope="col">Quantidade</th>
-                        <th scope="col">Fornecedor</th>
+                        <th scope="col"><?= $produto['nome'] ?></th>
+                        <th scope="col"><?= $produto['preco'] ?></th>
+                        <th scope="col"><?= $produto['quantidade'] ?></th>
+                        <th scope="col"><?= $produto['fornecedor'] ?></th>
                         <th scope="col">Ações</th>
                     </tr>
+                    <?php endforeach ?>
                 </thead>
                 <tbody>
                     <!-- Aqui serão geradas as linhas com os dados e as ações Editar e Excluir de cada registro. -->
