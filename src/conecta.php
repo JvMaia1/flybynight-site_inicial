@@ -1,16 +1,14 @@
 <?php 
 // src/concta.php
 // parametros de conexao ao servirod Mysql
-$servidor = 'localhost';
+$servidor = '127.0.0.1';
 $banco = 'flybynight_completo';
 $usuario = 'maia';
 $senha = 'maia123';
 
 try {
     $conexao = new PDO(
-            "mysql:host=$servidor;
-            dbname=$banco;
-            charset=utf8mb4",
+            "mysql:host=$servidor;dbname=$banco;charset=utf8mb4",
             $usuario,
             $senha
         );
