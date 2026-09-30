@@ -2,6 +2,14 @@
     require_once "../src/fornecedor_crud.php";
     $idFornecedor = $_GET['id'];
     $fornecedor = buscarFornecedorPorId($conexao, $idFornecedor);
+
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        $nome = $_POST['nome'];
+        $id = $_POST['id'];
+        atualizarFornecedor($conexao, $nome, $id);
+        header("location:listar.php");
+        exit;
+    }
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -24,7 +32,7 @@
         <!-- Modelo visual: os campos não são enviados nem persistidos. -->
         <!-- Os campos serão preenchidos com os dados do registro selecionado. -->
         <form action="" method="post">
-            <input type="hidden" name="" value="<?= $fornecedor['id'] ?>">
+            <input type="hidden" name="id" value="<?= $fornecedor['id'] ?>">
             <div>
                 <label for="nome">Nome:</label>
                 <input value="<?= $fornecedor['nome'] ?>" type="text" name="nome" id="nome" maxlength="100" required>
