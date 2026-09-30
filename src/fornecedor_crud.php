@@ -42,8 +42,8 @@ function buscarFornecedorPorId(PDO $conexao, int $id):array{
 }
 
 function atualizarFornecedor(PDO $conexao, string $nome, int $id){
-    
-    $sql = "UPDATE fonecedores SET nome = :nome WHERE id = :id";
+
+    $sql = "UPDATE fornecedores SET nome = :nome WHERE id = :id";
     $consulta = $conexao->prepare($sql);
     
     $consulta->bindValue(":nome", $nome);
