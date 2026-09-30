@@ -30,19 +30,24 @@ function inserirFornecedor(PDO $conexao, string $nome):void{
 
 }
 
-function editarFornecedor(PDO $conexao, string $id, $nome):void{
-    $sql = "ALTER TABLE fornecedores WHERE id = :id nome";
-}
-
-function buscarFornecedorPorId(PDO $conexao, int $id){
+function buscarFornecedorPorId(PDO $conexao, int $id):array{
     $sql = "SELECT * FROM fornecedores WHERE id = :id";
-
-    $consulta= $conexao->prepare($sql);
+    $consulta = $conexao->prepare($sql);
 
     $consulta->bindValue(":id", $id);
 
     $consulta->execute();
 
     return $consulta->fetch();
+}
 
+function atualizarFornecedor(PDO $conexao, string $nome, int $id){
+    
+    $sql = "UPDATE fonecedores SET nome = :nome WHERE id = :id";
+    $consulta = $conexao->prepare($sql);
+    
+    $consulta->bindValue(":nome", $nome);
+    $consulta->bindValue(":id", $id);
+
+    $consulta->execute();
 }
