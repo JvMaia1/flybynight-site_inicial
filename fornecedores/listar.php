@@ -37,6 +37,8 @@
                     <tr>
                         <td><?= $fornecedor['id'] ?></td>
                         <td><?= $fornecedor['nome'] ?></td>
+                        <td><a href="editar.php?id=<?= $fornecedor['id']  ?>">Editar</a></td>
+                        <td><a href="excluir.php" class="excluir">Excluir</a></td>
                     </tr>
                     <?php endforeach; ?>
                 </tbody>

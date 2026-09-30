@@ -16,5 +16,33 @@ function buscarFornecedores(PDO $conexao):array{
 }
 
 function inserirFornecedor(PDO $conexao, string $nome):void{
-    $sql = ""
+    $sql = "INSERT INTO fornecedores (nome) VALUES (:nome)";
+
+    try {
+        $xpto = $conexao->prepare($sql);
+        
+        $xpto->execute([
+            ':nome' => $nome
+        ]);
+    } catch (PDOException $erro) {
+        die("Erro ao inserir fornecedor:" . $erro->getMessage());
+    }
+
+}
+
+function editarFornecedor(PDO $conexao, string $id, $nome):void{
+    $sql = "ALTER TABLE fornecedores WHERE id = :id nome";
+}
+
+function buscarFornecedorPorId(PDO $conexao, int $id){
+    $sql = "SELECT * FROM fornecedores WHERE id = :id";
+
+    $consulta= $conexao->prepare($sql);
+
+    $consulta->bindValue(":id", $id);
+
+    $consulta->execute();
+
+    return $consulta->fetch();
+
 }

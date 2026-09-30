@@ -1,3 +1,11 @@
+<?php
+    require_once "src/fornecedor_crud.php";
+    $idFornecedor = $_GET['id'];
+    $fornecedor = buscarFornecedorPorId($conexao, $idFornecedor);
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        editarFornecedor($conexao, $fornecedor['id'], $fornecedor['nome']);
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 

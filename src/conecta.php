@@ -21,4 +21,4 @@ try {
     exit("Não foi possivel conectar ao banco de dados.");
 }
 
-var_dump($conexao);
+// var_dump($conexao);
