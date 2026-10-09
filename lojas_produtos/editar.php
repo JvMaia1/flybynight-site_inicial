@@ -1,3 +1,21 @@
+<?php
+    require_once "../src/loja_produto_crud.php";
+    require_once "../src/lojas_crud.php";
+    require_once "../src/produto_crud.php";
+    $lojaId = intval($_GET['loja_id']);
+    $produtoId = intval($_GET['produto_id']);
+    $produtos = buscarProdutos($conexao);
+    $lojas = buscarLojas($conexao);
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $lojaId = $_POST['loja_id'];
+        $produtoId = $_POST['produto_id'];
+        $estoque = $_POST['estoque'];
+
+        atualizarLojaProduto($conexao, $lojaId, $produtoId, $estoque);
+        header("Location:listar.php");
+    }
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,7 +41,9 @@
             <div>
                 <label for="loja">Loja:</label>
                 <select name="loja_id" id="loja" required>
-                    <option value="">Selecione</option>
+                    <?php foreach ($lojas as $loja): ?>
+                    <option <?= $loja['id'] == $lojaId ? 'selected' : '' ?> value="<?= $loja['id'] ?>"><?= $loja['nome'] ?></option>
+                    <?php endforeach; ?>
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
                 </select>
             </div>
@@ -31,7 +51,9 @@
             <div>
                 <label for="produto">Produto:</label>
                 <select name="produto_id" id="produto" required>
-                    <option value="">Selecione</option>
+                    <?php foreach ($produtos as $produto): ?>
+                    <option <?= $produto['id'] == $produtoId ? 'selected' : '' ?> value="<?= $produto['id'] ?>"><?= $produto['nome_produto'] ?></option>
+                    <?php endforeach; ?>
                     <!-- As opções serão preenchidas com os registros do banco de dados. -->
                 </select>
             </div>

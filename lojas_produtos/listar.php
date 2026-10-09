@@ -1,3 +1,8 @@
+<?php
+require_once "../src/loja_produto_crud.php";
+$produtos = buscarLojasProdutos($conexao);
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -23,12 +28,15 @@
             <table>
                 <caption>Relação de Produtos por loja</caption>
                 <thead>
+                    <?php foreach ($produtos as $produto): ?>
                     <tr>
-                        <th scope="col">Loja</th>
-                        <th scope="col">Produto</th>
-                        <th scope="col">Estoque</th>
-                        <th scope="col">Ações</th>
+                        <th scope="col"><?= $produto['loja_nome'] ?></th>
+                        <th scope="col"><?= $produto['produto_nome'] ?></th>
+                        <th scope="col"><?= $produto['estoque'] ?></th>
+                        <th scope="col"><a href="editar.php?loja_id=<?= $produto['loja_id'] ?>&produto_id=<?= $produto['produto_id'] ?>">Editar</a></th>
+                        <th scope="col"><a class="excluir" href="excluir.php?id=<?= $produto['produto_id'] ?>">Excluir</a></th>
                     </tr>
+                    <?php endforeach; ?>
                 </thead>
                 <tbody>
                     <!-- Aqui serão geradas as linhas com os dados e as ações Editar e Excluir de cada registro. -->
