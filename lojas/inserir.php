@@ -2,7 +2,7 @@
     require_once "../src/lojas_crud.php";
 
     if($_SERVER['REQUEST_METHOD'] === "POST"){
-        $nome = $_POST['nome'];
+        $nome = filter_var($_POST['nome'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         inserirLoja($conexao, $nome);
         header('location:listar.php');
         exit;

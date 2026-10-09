@@ -28,11 +28,12 @@
                 <thead>
                     <?php foreach($produtos as $produto): ?>
                     <tr>
-                        <th scope="col"><?= $produto['nome'] ?></th>
+                        <th scope="col"><?= $produto['nome_produto'] ?></th>
                         <th scope="col"><?= $produto['preco'] ?></th>
                         <th scope="col"><?= $produto['quantidade'] ?></th>
                         <th scope="col"><?= $produto['fornecedor'] ?></th>
-                        <th scope="col">Ações</th>
+                        <th scope="col"><a href="editar.php?id=<?= $produto['id'] ?>">Editar</a></th>
+                        <th scope="col"><a href="excluir.php?id=<?= $produto['id'] ?>">Excluir</a></th>
                     </tr>
                     <?php endforeach ?>
                 </thead>

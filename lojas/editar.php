@@ -4,8 +4,8 @@
     $loja = buscarLojaPorId($conexao, $id);
 
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
-        $nome = $_POST['nome'];
-        $id = $_POST['id'];
+        $nome = filter_var($_POST['nome'], FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+        $id = filter_var($_POST['id'], FILTER_SANITIZE_NUMBER_INT);
 
         atualizarLoja($conexao, $id, $nome);
         header('location:listar.php');
