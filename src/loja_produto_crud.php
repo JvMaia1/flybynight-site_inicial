@@ -64,4 +64,11 @@ function excluirProdutoLoja(PDO $conexao, int $idLoja, int $idProduto){
     $consulta->execute();
 }
 
-function buscarLojaProdutoPorIds(){}
+function buscarLojaProdutoPorIds(PDO $conexao, int $lojaId, int $produtoId): array {
+    $sql = "SELECT * FROM lojas_produtos WHERE loja_id = :loja_id AND produto_id = :produto_id";
+    $consulta = $conexao->prepare($sql);
+    $consulta->bindValue(":loja_id", $lojaId);
+    $consulta->bindValue(":produto_id", $produtoId);
+    $consulta->execute();
+    return $consulta->fetch() ?: [];
+}
